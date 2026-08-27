@@ -1,0 +1,19 @@
+workflows:
+  android-workflow:
+    name: Android Build Workflow
+    max_build_duration: 30
+    instance_type: mac_mini_m1
+    environment:
+      java: 17
+    scripts:
+      - name: Set up Environment
+        script: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+          gradle wrapper --gradle-version 9.3.1
+          chmod +x gradlew
+          keytool -genkeypair -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+      - name: Build Android APK
+        script: |
+          ./gradlew assembleDebug
+    artifacts:
+      - app/build/outputs/apk/debug/*.apk
