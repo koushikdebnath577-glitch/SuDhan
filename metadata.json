@@ -1,0 +1,7 @@
+{
+  "name": "SuDhan",
+  "description": "Smart Interest & Lending Manager for tracking money lent, borrowed, interest calculation, customer balances, and reports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
